@@ -472,6 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 2120378741}
   moveSpeed: 10
+  animController: {fileID: 2120378744}
 --- !u!95 &2120378744
 Animator:
   serializedVersion: 4
