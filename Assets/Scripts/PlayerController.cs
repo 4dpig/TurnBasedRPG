@@ -9,6 +9,13 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D body;
     public float moveSpeed;
     public Animator animController;
+
+    // 记录玩家所在的上一个scene
+    public string thePreviousScene;
+    
+    // 单一玩家实例
+    public static PlayerController theOnlyPlayerInstance;
+    
     public const float PRECISION = 1e-6f;
 
     public static bool isNotZero(float number)
@@ -19,7 +26,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (theOnlyPlayerInstance == null)
+        {
+            theOnlyPlayerInstance = this;
+            DontDestroyOnLoad(theOnlyPlayerInstance.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     // Update is called once per frame

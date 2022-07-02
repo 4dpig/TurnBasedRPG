@@ -71,4 +71,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e26285a24d5999748a38abdad6e8ad3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToExit: 
   sceneToLoad: Test2Scene

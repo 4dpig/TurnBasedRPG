@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &284563063
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495866145058856854, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4891049373484451385, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: m_Name
+      value: EntrancePointRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059192224386424787, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
+      propertyPath: sceneCorrespondingToTheEntrance
+      value: Scene1-2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 129994b8f0c93a049b7cfe4119c3dd52, type: 3}
 --- !u!1 &358006183
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +518,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120378738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.92, y: 0.84, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,6 +577,7 @@ MonoBehaviour:
   body: {fileID: 2120378741}
   moveSpeed: 10
   animController: {fileID: 2120378744}
+  thePreviousScene: 
 --- !u!95 &2120378744
 Animator:
   serializedVersion: 4
@@ -543,6 +605,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 979879186493744866, guid: 1647313576833f942afd1edbe0649a13, type: 3}
+      propertyPath: sceneToExit
+      value: Scene1-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 979879186493744866, guid: 1647313576833f942afd1edbe0649a13, type: 3}
+      propertyPath: sceneToLoad
+      value: Scene1-2
+      objectReference: {fileID: 0}
     - target: {fileID: 979879186493744877, guid: 1647313576833f942afd1edbe0649a13, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -589,7 +659,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 979879186493744879, guid: 1647313576833f942afd1edbe0649a13, type: 3}
       propertyPath: m_Name
-      value: ExitArea
+      value: ExitAreaRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1647313576833f942afd1edbe0649a13, type: 3}
