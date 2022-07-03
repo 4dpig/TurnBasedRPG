@@ -23,8 +23,13 @@ public class PlayerController : MonoBehaviour
         return Math.Abs(number) > PRECISION;
     }
     
-    // Start is called before the first frame update
-    void Start()
+    // Awake is called before Start
+    /*
+     * 这里不要用Start，因为其他脚本的Start函数里可能会访问theOnlyPlayerInstance,
+     * 如果其他脚本的Start函数先执行，那么就有可能访问到一个null值。
+     * 所以这里可以用Awake或者OnEnable
+     */
+    private void Awake()
     {
         if (theOnlyPlayerInstance == null)
         {
@@ -35,6 +40,12 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
