@@ -23,20 +23,23 @@ public class CameraController : MonoBehaviour
         // 目标设为player的transform
         target = PlayerController.theOnlyPlayerInstance.transform;
         
+        // 获取地图边界（左下角坐标和右上角坐标）
+        Vector3 leftBottom = theMap.localBounds.min;
+        Vector3 rightTop = theMap.localBounds.max;
+
         // 获取camera的竖向视口大小的一半（即为Camera的Inspector里size的一半）
         float halfV = Camera.main.orthographicSize;
         // 获取camera的横向视口大小的一半，aspect为分辨率比例（比如16/9），halfV乘以aspcet即得到横向视口大小的一半
         float halfH = halfV * Camera.main.aspect;
         
-        // 获取map一半的宽与高
-        float halfMapWidth = theMap.size.x / 2;
-        float halfMapHeight = theMap.size.y / 2;
-
         // 设置camera的坐标范围
-        cameraHorizontalMin = -halfMapWidth + halfH;
-        cameraHorizontalMax = -cameraHorizontalMin;
-        cameraVerticalMin = -halfMapHeight + halfV;
-        cameraVerticalMax = -cameraVerticalMin;
+        cameraHorizontalMin = leftBottom.x + halfH;
+        cameraHorizontalMax = rightTop.x - halfH;
+        cameraVerticalMin = leftBottom.y + halfV;
+        cameraVerticalMax = rightTop.y - halfV;
+        
+        // 将当前map的边界坐标传给PlayerController
+        PlayerController.theOnlyPlayerInstance.SetPlayerBounds(leftBottom, rightTop);
     }
 
     // LateUpdate is called once per frame after Update
