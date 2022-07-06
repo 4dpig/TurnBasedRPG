@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         // 目标设为player的transform
-        target = PlayerController.theOnlyPlayerInstance.transform;
+        target = PlayerController.instance.transform;
         
         // 获取地图边界（左下角坐标和右上角坐标）
         Vector3 leftBottom = theMap.localBounds.min;
@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
         cameraVerticalMax = rightTop.y - halfV;
         
         // 将当前map的边界坐标传给PlayerController
-        PlayerController.theOnlyPlayerInstance.SetPlayerBounds(leftBottom, rightTop);
+        PlayerController.instance.SetPlayerBounds(leftBottom, rightTop);
     }
 
     // LateUpdate is called once per frame after Update

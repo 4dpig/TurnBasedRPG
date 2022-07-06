@@ -20,37 +20,29 @@ public class PlayerController : MonoBehaviour
     public string thePreviousScene;
     
     // 单一玩家实例
-    public static PlayerController theOnlyPlayerInstance;
-    
-    public const float PRECISION = 1e-6f;
+    public static PlayerController instance;
 
-    public static bool IsNotZero(float number)
+    // Start is called before the first frame update
+    void Start()
     {
-        return Math.Abs(number) > PRECISION;
-    }
-
-    // Awake is called before Start
-    /*
-     * 这里不要用Start，因为其他脚本的Start函数里可能会访问theOnlyPlayerInstance,
-     * 如果其他脚本的Start函数先执行，那么就有可能访问到一个null值。
-     * 所以这里可以用Awake或者OnEnable
-     */
-    void Awake()
-    {
-        if (theOnlyPlayerInstance == null)
+        /*
+         * 第一种情况：从主Scene启动的游戏
+         * 第二种情况：从其他的Scene启动的游戏（作为测试用）
+         * 第三种情况：从其他的Scene返回到主Scene时，销毁新产生的那个gameobject
+         */
+        if (instance == null)
         {
-            theOnlyPlayerInstance = this;
-            DontDestroyOnLoad(theOnlyPlayerInstance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(instance.gameObject);
+        }
+        else if(instance == this)
+        {
+            DontDestroyOnLoad(instance.gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
     }
 
     // Update is called once per frame
@@ -82,7 +74,7 @@ public class PlayerController : MonoBehaviour
         animController.SetFloat("moveX", moveX);
         animController.SetFloat("moveY", moveY);
         
-        if(IsNotZero(moveX) || IsNotZero(moveY))
+        if(FloatTools.IsNotZero(moveX) || FloatTools.IsNotZero(moveY))
         {
             animController.SetFloat("lastMoveX", moveX);
             animController.SetFloat("lastMoveY", moveY);

@@ -1,29 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EntrancePointController : MonoBehaviour
 {
     // 与入口处相对应的那个Scene
     public string sceneCorrespondingToTheEntrance;
+
+    private float fadeTimeLeft;
     
     // Start is called before the first frame update
     void Start()
     {
         /*
          * 如果 与入口处相对应的那个Scene 等于 玩家所在的上一个Scene
-         * 那么就把玩家的位置设为入口object所在的位置。
+         * 那么将玩家的位置设为入口位置
+         * 并进行渐变
          */
-        if (sceneCorrespondingToTheEntrance == PlayerController.theOnlyPlayerInstance.thePreviousScene)
+        if (sceneCorrespondingToTheEntrance == PlayerController.instance.thePreviousScene)
         {
-            PlayerController.theOnlyPlayerInstance.transform.position = this.transform.position;
+            PlayerController.instance.transform.position = this.transform.position;
+            UICanvasController.instance.fadeFromBlack();
         }
-        // dsf
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
