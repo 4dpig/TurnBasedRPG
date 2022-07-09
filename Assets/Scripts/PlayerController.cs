@@ -19,8 +19,12 @@ public class PlayerController : MonoBehaviour
     // 记录玩家所在的上一个scene
     public string thePreviousScene;
     
+    // 控制玩家能否移动
+    public bool canPlayerMove = true;
+    
     // 单一玩家实例
     public static PlayerController instance;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -59,26 +63,30 @@ public class PlayerController : MonoBehaviour
             * 向下走（S键或方向下键），返回-1；
             * 无操作，返回0；
          */
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        
-        // 以用户输入为基准，设置player速度
-        body.velocity = new Vector2(moveX, moveY) * moveSpeed;
-        
-        // 将player坐标控制在范围之内
-        float x = Mathf.Clamp(this.transform.position.x, playerHorizontalMin, playerHorizontalMax);
-        float y = Mathf.Clamp(this.transform.position.y, playerVerticalMin, playerVerticalMax);
-        this.transform.position = new Vector3(x, y, this.transform.position.z);
-        
-        // 给 控制人物动画的参数 赋值
-        animController.SetFloat("moveX", moveX);
-        animController.SetFloat("moveY", moveY);
-        
-        if(FloatTools.IsNotZero(moveX) || FloatTools.IsNotZero(moveY))
+        if (canPlayerMove)
         {
-            animController.SetFloat("lastMoveX", moveX);
-            animController.SetFloat("lastMoveY", moveY);
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
+        
+            // 以用户输入为基准，设置player速度
+            body.velocity = new Vector2(moveX, moveY) * moveSpeed;
+        
+            // 将player坐标控制在范围之内
+            float x = Mathf.Clamp(this.transform.position.x, playerHorizontalMin, playerHorizontalMax);
+            float y = Mathf.Clamp(this.transform.position.y, playerVerticalMin, playerVerticalMax);
+            this.transform.position = new Vector3(x, y, this.transform.position.z);
+        
+            // 给 控制人物动画的参数 赋值
+            animController.SetFloat("moveX", moveX);
+            animController.SetFloat("moveY", moveY);
+        
+            if(FloatTools.IsNotZero(moveX) || FloatTools.IsNotZero(moveY))
+            {
+                animController.SetFloat("lastMoveX", moveX);
+                animController.SetFloat("lastMoveY", moveY);
+            }
         }
+        
     }
 
     // 根据当前地图边界坐标来设置玩家的坐标范围
