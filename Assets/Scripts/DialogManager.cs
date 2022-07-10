@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
@@ -11,8 +13,9 @@ public class DialogManager : MonoBehaviour
     
     public Text dialogText;
     public Text nameText;
-
-    public string[] dialogLines;
+    
+    public string interactiveObjectName;
+    public ObjectText[] lines;
 
     public int currentLine;
 
@@ -31,11 +34,9 @@ public class DialogManager : MonoBehaviour
         {
             if (Input.GetButtonUp("Fire1"))
             {
-                currentLine++;
-                
-                if (currentLine < dialogLines.Length)
+                if (currentLine < lines.Length)
                 {
-                    dialogText.text = dialogLines[currentLine];
+                    showOneLine();
                 }
                 else
                 {
@@ -47,15 +48,36 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    public void showDialog(string[] newLines)
+    public void showDialog(ObjectText[] newLines, string newInteractiveObjectName)
     {
         // 不让玩家移动
         PlayerController.instance.canPlayerMove = false;
         
-        dialogLines = newLines;
+        // 初始化
+        lines = newLines;
+        interactiveObjectName = newInteractiveObjectName;
         currentLine = 0;
-
         dialogBox.SetActive(true);
-        dialogText.text = dialogLines[currentLine];
+        
+        // 显示第一行
+        showOneLine();
+    }
+
+    private void showOneLine()
+    {
+        // 显示名字
+        if (lines[currentLine].isPlayer)
+        {
+            nameText.text = "Player";
+        }
+        else
+        {
+            nameText.text = interactiveObjectName;
+        }
+        
+        // 显示文本
+        dialogText.text = lines[currentLine].text;
+        
+        currentLine++;
     }
 }

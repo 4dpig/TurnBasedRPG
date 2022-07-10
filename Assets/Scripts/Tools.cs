@@ -1,5 +1,12 @@
 ﻿using System;
 
+[System.Serializable]
+public struct ObjectText
+{
+    public bool isPlayer;
+    public string text;
+}
+
 public class FloatTools
 {
     public const float PRECISION = 1e-6f;

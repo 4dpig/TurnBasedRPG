@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class DialogActivator : MonoBehaviour
 {
-    public string[] lines;
+    // 交互对象的名称
+    public string interactiveObjectName;
+    // 玩家与这个交互对象交互后，所显示的文本
+    public ObjectText[] lines;
+    
     private bool isPlayerInNPCArea;
     
     // Start is called before the first frame update
@@ -19,7 +23,7 @@ public class DialogActivator : MonoBehaviour
     {
         if (isPlayerInNPCArea && Input.GetButtonDown("Submit"))
         {
-            DialogManager.instance.showDialog(lines);
+            DialogManager.instance.showDialog(lines, interactiveObjectName);
         }
     }
 
