@@ -30,10 +30,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         /*
-         * 第一种情况：从主Scene启动的游戏
-         * 第二种情况：从其他的Scene启动的游戏（作为测试用）
-         * 第三种情况：从其他的Scene返回到主Scene时，销毁新产生的那个gameobject
-         */
+       * 第一种情况：从主Scene启动的游戏
+       * 第二种情况：从其他的Scene启动的游戏（作为测试用）
+       * 第三种情况：从其他的Scene启动，当返回到主Scene时，销毁新产生的那个gameobject
+       */
         if (instance == null)
         {
             instance = this;
